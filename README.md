@@ -1,6 +1,7 @@
 # DocuSound
+---
 
-
+`DocuSound` is an App/project that turns recording speech/audio into text, which can be used for efficient documentation and storage for written communications.
 
 ## Getting started
 
