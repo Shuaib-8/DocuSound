@@ -12,6 +12,12 @@ First create a vritual environment & install latest version of pip
 ```bash
 $ python -m venv venv && pip install --upgrade pip
 ```
+You can then activate the environment like so 
+
+```bash
+$ source venv/bin/activate 
+```
+
 Then install as a package via 
 
 ```bash
