@@ -5,7 +5,8 @@ stages:
   - quality
 
 before_script:
-  - pip install -r requirements.txt
+  - pip install --upgrade pip && pip install pyproject.toml .
+
 
 test:
   stage: test
