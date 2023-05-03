@@ -1,0 +1,37 @@
+[project]
+name = "docusound"
+description = "A project that turns recording speech/audio into text, which can be used for efficient documentation and storage for written communications."
+version = "0.1.0"
+authors = [
+    { name = "Shuaib Ahmed", email = "shuaib.ahmed45@gmail.com" }
+]
+dependencies = [
+    "Django==4.1.4",
+    "ipykernel",
+    "requests==2.28.1"
+]
+
+[project.optional-dependencies]
+ci = [
+  "black==22.10.0",
+  "flake8==5.0.4",
+  "isort==5.10.1",
+  "pre-commit",
+  "pytest",
+  "pytest-cov",
+] 
+
+[tool.setuptools]
+packages = ["docusound"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-vv -s --durations=0"
+
+[tool.black]
+line-length = 112
+
+[tool.isort]
+profile = 'black'
