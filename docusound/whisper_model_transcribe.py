@@ -1,22 +1,30 @@
 # Description: Transcribe audio file using whisper model
 
+import os
+import warnings
+
 import ffmpeg
 import numpy as np
 import whisper
 
+warnings.filterwarnings("ignore")
+
 
 class WhisperModelTranscribe:
 
-    # Hard code variable within class for now
+    # Hard code sample rate for now
     SAMPLE_RATE = 16000
 
-    def __init__(self, file: str = None, model_type: str = "base"):
-        if file.endswith() not in ["m4a", "mp3", "webm", "mp4", "mpga", "wav", "mpeg"]:
+    # Hard code accepted file formats for now
+    ACCEPTED_FILE_FORMATS = [".m4a", ".mp3", ".webm", ".mp4", ".mpga", ".wav", ".mpeg"]
+
+    def __init__(self, file_path: str = None, model_type: str = "base"):
+        if os.path.splitext(file_path)[1] not in self.ACCEPTED_FILE_FORMATS:
             raise ValueError(
                 "File format must be either 'm4a'; 'mp3'; 'webm'; 'mp4'; \
-                                 'mpga', 'wav', 'mpeg'"
+                              'mpga'; 'wav'; 'mpeg'"
             )
-        self.file = file
+        self.file_path = file_path
         if model_type not in ["tiny", "base", "small", "medium", "large"]:
             raise ValueError(
                 "Model type must be either 'tiny'; \
@@ -55,6 +63,17 @@ class WhisperModelTranscribe:
         return np.frombuffer(out, np.int16).flatten().astype(np.float32) / 32768.0
 
     def transcribe(self, file_path: str = ""):
-        model = whisper.models(self.model_type)
-        result = model.transcribe(self.load_audio(file_path))
+        model = whisper.load_model(self.model_type)
+        result = model.transcribe(file_path, fp16=False, language="en")
         return result["text"]
+
+
+if __name__ == "__main__":
+    from pathlib import Path
+
+    # get location of file path on desktop
+    file_path = str(Path.home() / "Desktop" / "audio-test.wav")
+
+    model_type = "small"
+    transcriber = WhisperModelTranscribe(file_path, model_type)
+    print(transcriber.transcribe(file_path))
