@@ -62,9 +62,9 @@ class WhisperModelTranscribe:
 
         return np.frombuffer(out, np.int16).flatten().astype(np.float32) / 32768.0
 
-    def transcribe(self, file_path: str = ""):
+    def transcribe(self):
         model = whisper.load_model(self.model_type)
-        result = model.transcribe(file_path, fp16=False, language="en")
+        result = model.transcribe(self.file_path, fp16=False, language="en")
         return result["text"]
 
 
@@ -76,4 +76,4 @@ if __name__ == "__main__":
 
     model_type = "small"
     transcriber = WhisperModelTranscribe(file_path, model_type)
-    print(transcriber.transcribe(file_path))
+    print(transcriber.transcribe())
