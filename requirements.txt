@@ -27,6 +27,7 @@ ffmpeg-python==0.2.0
 filelock==3.9.0
 flake8==5.0.4
 future==0.18.3
+ffmpeg-python
 gitdb==4.0.10
 GitPython==3.1.31
 identify==2.5.18
