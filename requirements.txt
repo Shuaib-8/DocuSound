@@ -18,7 +18,7 @@ debugpy==1.6.6
 decorator==5.1.1
 distlib==0.3.6
 Django==4.1.4
-# -e git+ssh://git@gitlab.com/pdm-app1/docusound.git@ec8b1c742f95f9de8cd9cbe964f110e0ebca931a#egg=docusound
+git+https://github.com/Shuaib-8/DocuSound.git#egg=docusound
 entrypoints==0.4
 exceptiongroup==1.1.0
 executing==1.2.0
